@@ -1,5 +1,5 @@
 {
-    "name": "typedoc-frontend",
+    "name": "@apixelvisuals/typedoc-frontend",
     "version": "0.1.0",
     "description": "Converts Typedoc output into a React component",
     "main": "dist/index.cjs.js",
@@ -39,5 +39,8 @@
     "peerDependencies": {
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

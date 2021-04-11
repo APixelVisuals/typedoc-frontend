@@ -7,7 +7,7 @@
 # Installation
 
 ```
-yarn add @APixelVisuals/typedoc-frontend
+yarn add @apixelvisuals/typedoc-frontend
 ```
 
 ---
@@ -18,7 +18,7 @@ yarn add @APixelVisuals/typedoc-frontend
 
 ```jsx
 import React from "react";
-import { Docs } from "@APixelVisuals/typedoc-frontend";
+import { Docs } from "@apixelvisuals/typedoc-frontend";
 
 const App = () => (
     <Docs url="https://example.com/docs.json" />
@@ -31,7 +31,7 @@ export default App;
 
 ```jsx
 import React from "react";
-import { Guides } from "@APixelVisuals/typedoc-frontend";
+import { Guides } from "@apixelvisuals/typedoc-frontend";
 
 const App = () => (
     <Guides
