@@ -1,0 +1,84 @@
+@import "../global";
+
+#codeblock {
+    .title-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        background-color: var(--background-color);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 10px 25px;
+
+        .title-bar-buttons {
+            display: flex;
+            flex-wrap: nowrap;
+
+            .title-bar-button {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+
+                &.red {
+                    background-color: #ec2a2a;
+                }
+
+                &.yellow {
+                    background-color: #f0bf1e;
+                    margin: 0px 8px;
+                }
+
+                &.green {
+                    background-color: #1ce669;
+                }
+            }
+        }
+
+        .path {
+            color: white;
+            font-family: "Apercu Pro";
+            font-size: 16px;
+            margin: 0px;
+            margin-bottom: 3px;
+            margin-left: 20px;
+        }
+    }
+
+    .codeblock-content {
+        background-color: var(--background-color-dark);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        overflow: auto;
+        padding: 35px;
+
+        &::-webkit-scrollbar {
+            background-color: #1d1d42;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 100px;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: #1d1d42;
+        }
+
+        .codeblock-text {
+            display: inline-block;
+            color: white;
+            font-family: "Apercu Pro Mono";
+            font-size: 16px;
+            margin: auto;
+            margin-right: 35px;
+        }
+    }
+}
+
+.hljs-keyword {
+    color: #ff79c6 !important;
+}
+
+.hljs-number {
+    color: #ffb86c;
+}

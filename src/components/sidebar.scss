@@ -1,0 +1,158 @@
+@import "../global";
+
+#sidebar {
+    .sidebar-menu-button {
+        position: absolute;
+        width: 16px;
+        top: 90px;
+        left: 35px;
+        margin-left: auto;
+        cursor: pointer;
+        z-index: 99;
+        transition: 0.5s;
+
+        @media screen and (min-width: 1101px) {
+            display: none;
+        }
+
+        .line {
+            width: 20px;
+            height: 3px;
+            background-color: #ffffffbb;
+            border-radius: 100px;
+            margin-top: 5px;
+            transition: 0.5s;
+            @include center;
+        }
+    }
+
+    .sidebar-content {
+        position: fixed;
+        width: 350px;
+        height: calc(100vh - 65px);
+        top: 65px;
+        left: 0px;
+        background-color: var(--background-color-dark);
+        overflow-y: auto;
+        z-index: 98;
+        transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        @media screen and (max-width: 1100px) {
+            width: 100%;
+            left: -100%;
+
+            &.open {
+                left: 0px;
+            }
+        }
+
+        .sidebar-title {
+            display: inline-block;
+            color: var(--accent-color);
+            font-family: "Apercu Pro Bold";
+            font-size: 24px;
+            margin-top: 35px;
+            margin-bottom: 30px;
+            @include center;
+
+            &.clickable {
+                cursor: pointer;
+            }
+        }
+
+        .divider {
+            width: 90%;
+            height: 2px;
+            background-color: var(--background-color);
+            @include center;
+        }
+
+        .search {
+            width: 80%;
+            margin-top: 35px;
+            @include center;
+
+            .search-title {
+                color: var(--text-color);
+                font-family: "Apercu Pro";
+                font-size: 20px;
+                margin: auto;
+                margin-left: 10px;
+            }
+
+            .search-bar {
+                width: calc(100% - 20px);
+                height: 35px;
+                color: white;
+                font-family: "Apercu Pro";
+                font-size: 16px;
+                background-color: var(--background-color);
+                border: none;
+                outline: none;
+                padding: 0px 10px;
+                padding-bottom: 3px;
+                margin-top: 5px;
+                transition: 0.25s;
+
+                &:focus {
+                    background-color: #2e2e60;
+                }
+            }
+        }
+
+        .pages {
+            display: flex;
+            width: 100%;
+            flex-wrap: nowrap;
+            margin-top: 15px;
+            margin-bottom: 35px;
+            @include center;
+
+            flex-direction: column;
+
+            .sidebar-section-title {
+                width: 80%;
+                color: var(--text-color);
+                font-family: "Apercu Pro";
+                font-size: 20px;
+                margin-top: 35px;
+                margin-left: calc(10% + 10px);
+            }
+
+            button {
+                text-decoration: none;
+                padding: 0px;
+
+                .sidebar-item {
+                    display: flex;
+                    width: 80%;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    padding: 5px 10%;
+                    cursor: pointer;
+                    transition: 0.25s;
+
+                    &:hover {
+                        background-color: #ffffff15;
+                    }
+
+                    .icon {
+                        width: 20px;
+                        height: 20px;
+                        margin-top: 2px;
+                    }
+
+                    .name {
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 20px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        margin: 0px;
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

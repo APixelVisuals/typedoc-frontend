@@ -1,0 +1,67 @@
+// Fonts
+@font-face {
+    font-family: "Apercu Pro Bold";
+    src: url(/assets/apercu-pro-bold.ttf);
+}
+
+@font-face {
+    font-family: "Apercu Pro";
+    src: url(/assets/apercu-pro.ttf);
+}
+
+@font-face {
+    font-family: "Apercu Pro Mono";
+    src: url(/assets/apercu-pro-mono.ttf);
+}
+
+// Mixins
+@mixin center {
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+}
+
+// Variables
+:root {
+    --background-color: #252550;
+
+    --background-color-dark: #171731;
+    --primary-color: #574ae2;
+    --accent-color: #f63e70;
+    --text-color: #7c72eb;
+    --text-color-light: #978fee;
+    --text-color-lighter: #ada9e4;
+}
+
+// HTML and body
+html {
+    background-color: black;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+}
+
+// Buttons
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #373e40;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+}
+
+// Image alt text
+img {
+    color: white;
+    font-family: "Apercu Pro";
+}

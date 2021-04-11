@@ -1,0 +1,44 @@
+@import "../global";
+
+#guide-component {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--background-color-dark);
+    border-radius: 5px;
+    padding: 25px 35px;
+    margin: 25px;
+    cursor: pointer;
+    transition: 0.15s;
+
+    &:hover {
+        box-shadow: 0px 0px 35px 15px var(--background-color-dark);
+        transform: translateY(-3px);
+    }
+
+    .guide-title {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        .guide-title-icon {
+            width: auto;
+            height: 25px;
+        }
+
+        .guide-title-text {
+            color: white;
+            font-family: "Apercu Pro";
+            font-size: 22px;
+            margin: 0px;
+            margin-left: 20px;
+        }
+    }
+
+    .guide-description {
+        color: #ffffff99;
+        font-family: "Apercu Pro";
+        font-size: 18px;
+        margin: auto;
+        margin-top: 10px;
+    }
+}

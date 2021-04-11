@@ -1,0 +1,28 @@
+@import "../global";
+
+#type-icon {
+    width: 25px;
+    height: 25px;
+    background-color: #303070;
+    border-radius: 5px;
+    transform: rotate(15deg);
+
+    .letter {
+        color: var(--accent-color);
+        font-family: "Apercu Pro Bold";
+        font-size: 18px;
+        text-align: center;
+        margin: auto;
+        margin-top: 5px;
+        transform: rotate(-15deg);
+    }
+
+    &.large {
+        width: 35px;
+        height: 35px;
+
+        .letter {
+            font-size: 28px;
+        }
+    }
+}

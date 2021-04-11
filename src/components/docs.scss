@@ -1,0 +1,270 @@
+@import "../global";
+
+#docs {
+    .content {
+        width: calc(100% - 350px);
+        margin-top: 65px;
+        margin-bottom: 85px;
+        float: right;
+
+        @media screen and (max-width: 1100px) {
+            width: 100%;
+        }
+
+        .type-group {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            white-space: pre-wrap;
+            margin: 0px;
+
+            p {
+                margin: 0px;
+            }
+        }
+
+        .type-link {
+            display: inline-block;
+            color: #006eff;
+            text-decoration: none;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .title {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            padding: 0px 100px;
+            margin-top: 65px;
+
+            .title-text {
+                margin-left: 25px;
+
+                .text {
+                    color: var(--accent-color);
+                    font-family: "Apercu Pro Bold";
+                    font-size: 28px;
+                    margin: 0px;
+                    margin-top: 10px;
+                }
+
+                .extends {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    color: white;
+                    font-family: "Apercu Pro";
+                    font-size: 18px;
+                    margin: 0px;
+
+                    span {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+
+        .divider {
+            width: calc(100% - 130px);
+            height: 2px;
+            background-color: var(--background-color);
+            margin: 0px 65px;
+            margin-top: 35px;
+        }
+
+        .table-of-contents {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            @include center;
+
+            .table-of-contents-section {
+                width: 350px;
+                margin: 0px 35px;
+                margin-top: 65px;
+
+                .name {
+                    background-color: var(--background-color);
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    padding: 10px 25px;
+                    cursor: pointer;
+
+                    .text {
+                        display: inline-block;
+                        color: var(--accent-color);
+                        font-family: "Apercu Pro";
+                        font-size: 22px;
+                        margin: auto;
+                        @include center;
+                    }
+                }
+
+                .section-content {
+                    background-color: var(--background-color-dark);
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    padding: 10px;
+
+                    .section-item {
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 20px;
+                        padding: 10px 25px;
+                        margin: auto;
+                        cursor: pointer;
+                    }
+
+                    .section-no-items {
+                        display: inline-block;
+                        color: var(--text-color-light);
+                        font-family: "Apercu Pro";
+                        font-size: 20px;
+                        @include center;
+                    }
+                }
+            }
+        }
+
+        .section {
+            margin: 0px 65px;
+            margin-top: 65px;
+
+            .name {
+                color: var(--accent-color);
+                font-family: "Apercu Pro Bold";
+                font-size: 28px;
+            }
+
+            .section-item-name {
+                display: inline-block;
+                color: white;
+                font-family: "Apercu Pro";
+                font-size: 22px;
+                white-space: nowrap;
+                margin: 0px;
+                margin-right: 15px;
+                cursor: pointer;
+
+                span {
+                    color: var(--text-color-light);
+
+                    &.name-parameter {
+                        color: var(--text-color-lighter);
+                    }
+                }
+            }
+
+            .section-content {
+                margin-left: 20px;
+
+                .comment {
+                    p {
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 18px;
+                        white-space: pre-wrap;
+                        margin: 0px;
+                        margin-top: 10px;
+                    }
+
+                    &.small p {
+                        margin-top: 0px;
+                    }
+
+                    code {
+                        font-family: "Apercu Pro Mono";
+                        font-size: 15px;
+                        background-color: #7c72eb45;
+                        border-radius: 5px;
+                        padding: 2px 7px;
+                    }
+                }
+            }
+
+            .property {
+                overflow-x: auto;
+                margin-top: 50px;
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #ffffff35;
+                }
+
+                .property-name {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+
+                    .type {
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 18px;
+                        margin: 0px;
+                    }
+                }
+            }
+
+            .method {
+                overflow-x: auto;
+                margin-top: 50px;
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #ffffff35;
+                }
+
+                .parameters {
+                    margin: 25px 0px;
+
+                    .parameter {
+                        margin: 5px 0px;
+
+                        .parameter-title {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+
+                            .parameter-name {
+                                color: var(--text-color-lighter);
+                                font-family: "Apercu Pro";
+                                font-size: 18px;
+                                margin: 0px;
+                            }
+
+                            .type {
+                                color: white;
+                                font-family: "Apercu Pro";
+                                font-size: 18px;
+                                margin: 0px 15px;
+                            }
+                        }
+                    }
+                }
+
+                .returns {
+                    margin-bottom: 25px;
+
+                    .returns-text {
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 18px;
+                        margin: 0px;
+
+                        .highlight {
+                            color: var(--text-color-light);
+                        }
+                    }
+                }
+            }
+
+            .section-no-items {
+                display: inline-block;
+                color: var(--text-color-light);
+                font-family: "Apercu Pro";
+                font-size: 20px;
+                margin: auto;
+            }
+        }
+    }
+}

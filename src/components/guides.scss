@@ -1,0 +1,236 @@
+@import "../global";
+
+#guides {
+    .content {
+        width: calc(100% - 350px);
+        margin-top: 65px;
+        margin-bottom: 85px;
+        float: right;
+
+        @media screen and (max-width: 1100px) {
+            width: 100%;
+        }
+
+        .title {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            padding: 0px 100px;
+            margin-top: 65px;
+
+            .icon {
+                width: auto;
+                height: 40px;
+            }
+
+            .text {
+                color: var(--accent-color);
+                font-family: "Apercu Pro Bold";
+                font-size: 28px;
+                margin: 0px;
+                margin-top: 5px;
+                margin-left: 25px;
+            }
+        }
+
+        .divider {
+            width: calc(100% - 130px);
+            height: 2px;
+            background-color: var(--background-color);
+            margin: 0px 65px;
+            margin-top: 35px;
+        }
+
+        .guide-content {
+            color: white;
+            font-family: "Apercu Pro";
+            font-size: 22px;
+            margin: 0px 65px;
+
+            h1 {
+                color: var(--accent-color);
+                font-size: 28px;
+                font-weight: normal;
+                margin-top: 65px;
+            }
+
+            p {
+                font-size: 22px;
+
+                code {
+                    font-family: "Apercu Pro Mono";
+                    font-size: 16px;
+                    background-color: #7c72eb45;
+                    border-radius: 5px;
+                    padding: 2px 7px;
+                }
+            }
+
+            a {
+                color: var(--text-color);
+            }
+
+            hr {
+                width: 100%;
+                height: 2px;
+                background-color: var(--background-color);
+                border: none;
+                margin-top: 35px;
+            }
+
+            .guide-codeblock {
+                margin: 35px 0px;
+
+                p {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .guide-section-title {
+            color: var(--accent-color);
+            font-family: "Apercu Pro";
+            font-size: 24px;
+            margin: 0px 125px;
+            margin-top: 65px;
+
+            @media screen and (max-width: 500px) {
+                margin: 0px 65px;
+                margin-top: 65px;
+            }
+        }
+
+        .guide-section {
+            display: grid;
+            margin: 0px 65px;
+
+            @media screen and (max-width: 500px) {
+                margin: 0px 15px;
+            }
+
+            &.basics {
+                grid-template-columns: repeat(8, auto);
+
+                .main {
+                    grid-column: span 4;
+                }
+
+                .main-small {
+                    grid-column: span 2;
+                }
+
+                .thin {
+                    grid-column: span 4;
+                }
+
+                @media screen and (max-width: 1400px) {
+                    grid-template-columns: repeat(6, auto);
+
+                    .main, .main-small {
+                        grid-column: span 2;
+                    }
+
+                    .thin {
+                        grid-column: span 3;
+                    }
+                }
+
+                @media screen and (max-width: 1300px) {
+                    grid-template-columns: repeat(2, auto);
+
+                    .main {
+                        grid-column: span 2;
+                        grid-row: 1;
+                    }
+
+                    .main-small, .thin {
+                        grid-column: span 1;
+                    }
+                }
+
+                @media screen and (max-width: 700px) {
+                    grid-template-columns: repeat(1, auto);
+
+                    .main {
+                        grid-column: span 1;
+                        grid-row: 1;
+                    }
+
+                    .main-small, .thin {
+                        grid-column: span 1;
+                    }
+                }
+            }
+
+            &.advanced-topics {
+                grid-template-columns: repeat(2, auto);
+
+                .main {
+                    grid-column: span 1;
+                }
+
+                @media screen and (max-width: 700px) {
+                    grid-template-columns: repeat(1, auto);
+                }
+            }
+
+            &.contributing {
+                grid-template-columns: repeat(12, auto);
+
+                .main {
+                    grid-column: span 6;
+                }
+
+                .main-small {
+                    grid-column: span 3;
+                }
+
+                .other {
+                    grid-column: span 4;
+                }
+
+                @media screen and (max-width: 1400px) {
+                    grid-template-columns: repeat(3, auto);
+
+                    .main, .main-small, .other {
+                        grid-column: span 1;
+                    }
+                }
+
+                @media screen and (max-width: 1300px) {
+                    grid-template-columns: repeat(2, auto);
+
+                    .main {
+                        grid-column: span 2;
+                        grid-row: 1;
+                    }
+
+                    .main-small, .other {
+                        grid-column: span 1;
+
+                        &.last {
+                            grid-column: span 2;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 700px) {
+                    grid-template-columns: repeat(1, auto);
+
+                    .main {
+                        grid-column: span 1;
+                        grid-row: 1;
+                    }
+
+                    .main-small, .other {
+                        grid-column: span 1;
+
+                        &.last {
+                            grid-column: span 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
