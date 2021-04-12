@@ -1,8 +1,8 @@
 import React from "react";
 import highlightjs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
-import "highlight.js/styles/dracula.css";
 import "./codeblock.scss";
+import "./codeblock-theme.scss";
 highlightjs.registerLanguage("javascript", javascript);
 
 const Codeblock = props => (
