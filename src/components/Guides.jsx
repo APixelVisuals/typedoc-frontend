@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import GuidesSidebar from "./GuidesSidebar.jsx";
 import Codeblock from "./Codeblock.jsx";
@@ -37,6 +37,27 @@ const Guides = props => {
         // Set guide
         setGuide(null);
     };
+
+    // On load
+    useEffect(() => {
+
+        // Get slug
+        const slug = window.location.href.split("/guides")[1].substring(1);
+
+        // Get guide
+        let guide;
+        props.sections.forEach(s => {
+
+            // Find guide
+            const thisGuide = s.guides.find(g => g.slug === slug);
+
+            // Set guide
+            if (thisGuide) guide = thisGuide;
+        });
+
+        // Select guide
+        guide ? selectGuide(guide) : resetGuide();
+    }, []);
 
     return (
         <div id="guides">
