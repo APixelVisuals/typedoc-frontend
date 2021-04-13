@@ -32,7 +32,6 @@
         height: calc(100vh - 65px);
         top: 65px;
         left: 0px;
-        background-color: var(--background-color-dark);
         overflow-y: auto;
         z-index: 98;
         transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -48,7 +47,6 @@
 
         .sidebar-title {
             display: inline-block;
-            color: var(--accent-color);
             font-family: "Apercu Pro Bold";
             font-size: 24px;
             margin-top: 35px;
@@ -63,7 +61,6 @@
         .divider {
             width: 90%;
             height: 2px;
-            background-color: var(--background-color);
             @include center;
         }
 
@@ -73,7 +70,6 @@
             @include center;
 
             .search-title {
-                color: var(--text-color);
                 font-family: "Apercu Pro";
                 font-size: 20px;
                 margin: auto;
@@ -86,7 +82,6 @@
                 color: white;
                 font-family: "Apercu Pro";
                 font-size: 16px;
-                background-color: var(--background-color);
                 border: none;
                 outline: none;
                 padding: 0px 10px;
@@ -112,7 +107,6 @@
 
             .sidebar-section-title {
                 width: 80%;
-                color: var(--text-color);
                 font-family: "Apercu Pro";
                 font-size: 20px;
                 margin-top: 35px;

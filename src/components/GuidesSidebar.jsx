@@ -35,13 +35,14 @@ const GuidesSidebar = props => {
             content={sections.map(s => (
                 <>
 
-                    <p className="sidebar-section-title">{s.name}</p>
+                    <p className="sidebar-section-title" style={{ color: props.colors.text }}>{s.name}</p>
 
                     {s.guides.map(g => <SidebarItem data={g} select={() => props.select(g)} />)}
 
                 </>
             ))}
             search={setSearchQuery}
+            colors={props.colors}
         />
     );
 };

@@ -120,20 +120,20 @@ const Docs = props => {
     return (
         <div id="docs">
 
-            <DocsSidebar docs={docs} setPath={setPath} />
+            <DocsSidebar docs={docs} setPath={setPath} colors={props.colors} />
 
             {(docsData && docsType) && (
                 <div className="content">
 
                     <div className="title">
 
-                        <TypeIcon letter={docsType.charAt(0).toUpperCase()} large={true} />
+                        <TypeIcon letter={docsType.charAt(0).toUpperCase()} large={true} colors={props.colors} />
 
                         <div className="title-text">
 
-                            {docsData.name && <h2 className="text">{docsData.name}</h2>}
-                            {docsType === "functions" && <h2 className="text">Functions</h2>}
-                            {docsType === "typeAliases" && <h2 className="text">Type Aliases</h2>}
+                            {docsData.name && <h2 className="text" style={{ color: props.colors.accent }}>{docsData.name}</h2>}
+                            {docsType === "functions" && <h2 className="text" style={{ color: props.colors.accent }}>Functions</h2>}
+                            {docsType === "typeAliases" && <h2 className="text" style={{ color: props.colors.accent }}>Type Aliases</h2>}
 
                             {docsData.extends && (
                                 <p className="extends"><span>Extends</span> {typeString(docsData.extends)}</p>
@@ -143,7 +143,7 @@ const Docs = props => {
 
                     </div>
 
-                    <div className="divider" />
+                    <div className="divider" style={{ backgroundColor: props.colors.background }} />
 
                     {docsType === "class" && (
                         <div className="class">
@@ -152,16 +152,16 @@ const Docs = props => {
 
                                 <div className="table-of-contents-section">
 
-                                    <div className="name" onClick={() => setJump("properties")}><p className="text">Properties</p></div>
+                                    <div className="name" style={{ backgroundColor: props.colors.background }} onClick={() => setJump("properties")}><p className="text" style={{ color: props.colors.accent }}>Properties</p></div>
 
-                                    <div className="section-content">
+                                    <div className="section-content" style={{ backgroundColor: props.colors.backgroundDark }}>
 
                                         {docsData.properties.filter(p => !p.private).map(p => (
                                             <p className="section-item" onClick={() => setJump(p.name)}>{p.name}</p>
                                         ))}
 
                                         {!docsData.properties.filter(p => !p.private).length && (
-                                            <p className="section-no-items">No Properties</p>
+                                            <p className="section-no-items" style={{ color: props.colors.textLight }}>No Properties</p>
                                         )}
 
                                     </div>
@@ -170,16 +170,16 @@ const Docs = props => {
 
                                 <div className="table-of-contents-section">
 
-                                    <div className="name" onClick={() => setJump("methods")}><p className="text">Methods</p></div>
+                                    <div className="name" style={{ backgroundColor: props.colors.background }} onClick={() => setJump("methods")}><p className="text" style={{ color: props.colors.accent }}>Methods</p></div>
 
-                                    <div className="section-content">
+                                    <div className="section-content" style={{ backgroundColor: props.colors.backgroundDark }}>
 
                                         {docsData.methods.filter(m => !m.private).map(m => (
                                             <p className="section-item" onClick={() => setJump(m.name)}>{m.name}</p>
                                         ))}
 
                                         {!docsData.methods.filter(m => !m.private).length && (
-                                            <p className="section-no-items">No Methods</p>
+                                            <p className="section-no-items" style={{ color: props.colors.textLight }}>No Methods</p>
                                         )}
 
                                     </div>
@@ -190,13 +190,13 @@ const Docs = props => {
 
                             <div className="section" data-name="properties">
 
-                                <p className="name">Properties</p>
+                                <p className="name" style={{ color: props.colors.accent }}>Properties</p>
 
                                 {docsData.properties.filter(p => !p.private).map(p => (
                                     <div className="property" data-name={p.name}>
 
                                         <div className="property-name">
-                                            <p className="section-item-name" onClick={() => setJump(p.name)}><span>{docsData.name}</span>.{p.name}{p.optional ? "?" : ""}</p>
+                                            <p className="section-item-name" onClick={() => setJump(p.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{p.name}{p.optional ? "?" : ""}</p>
                                             <p className="type">{typeString(p.type)}</p>
                                         </div>
 
@@ -208,19 +208,19 @@ const Docs = props => {
                                 ))}
 
                                 {!docsData.properties.filter(p => !p.private).length && (
-                                    <p className="section-no-items">No Properties</p>
+                                    <p className="section-no-items" style={{ color: props.colors.textLight }}>No Properties</p>
                                 )}
 
                             </div>
 
                             <div className="section" data-name="methods">
 
-                                <p className="name">Methods</p>
+                                <p className="name" style={{ color: props.colors.accent }}>Methods</p>
 
                                 {docsData.methods.filter(m => !m.private).map(m => (
                                     <div className="method" data-name={m.name}>
 
-                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span className="name-parameter">{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
+                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
 
                                         <div className="section-content">
 
@@ -230,7 +230,7 @@ const Docs = props => {
                                                 {m.parameters.map(p => (
                                                     <div className="parameter">
                                                         <div className="parameter-title">
-                                                            <p className="parameter-name">{p.name}{p.optional ? "?" : ""}</p>
+                                                            <p className="parameter-name" style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</p>
                                                             <p className="type">{typeString(p.type)}</p>
                                                         </div>
                                                         <ReactMarkdown source={p.comment} className="comment small" />
@@ -240,7 +240,7 @@ const Docs = props => {
 
                                             {m.returnType && (
                                                 <div className="returns">
-                                                    <p className="returns-text"><span className="highlight">Returns</span> {typeString(m.returnType)}</p>
+                                                    <p className="returns-text"><span style={{ color: props.colors.textLight }}>Returns</span> {typeString(m.returnType)}</p>
                                                     <ReactMarkdown source={m.returnComment} className="comment small" />
                                                 </div>
                                             )}
@@ -251,7 +251,7 @@ const Docs = props => {
                                 ))}
 
                                 {!docsData.methods.filter(m => !m.private).length && (
-                                    <p className="section-no-items">No Methods</p>
+                                    <p className="section-no-items" style={{ color: props.colors.textLight }}>No Methods</p>
                                 )}
 
                             </div>
@@ -264,12 +264,12 @@ const Docs = props => {
 
                             <div className="section">
 
-                                <p className="name">Functions</p>
+                                <p className="name" style={{ color: props.colors.accent }}>Functions</p>
 
                                 {docsData.map(f => (
                                     <div className="method">
 
-                                        <p className="section-item-name" onClick={() => setJump(f.name)}>{f.name}({f.parameters.length ? f.parameters.map(p => <span className="name-parameter">{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
+                                        <p className="section-item-name" onClick={() => setJump(f.name)}>{f.name}({f.parameters.length ? f.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
 
                                         <div className="section-content">
 
@@ -279,7 +279,7 @@ const Docs = props => {
                                                 {f.parameters.map(p => (
                                                     <div className="parameter">
                                                         <div className="parameter-title">
-                                                            <p className="parameter-name">{p.name}{p.optional ? "?" : ""}</p>
+                                                            <p className="parameter-name" style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</p>
                                                             <p className="type">{typeString(p.type)}</p>
                                                         </div>
                                                         <ReactMarkdown source={p.comment} className="comment small" />
@@ -289,7 +289,7 @@ const Docs = props => {
 
                                             {f.returnType && (
                                                 <div className="returns">
-                                                    <p className="returns-text"><span className="highlight">Returns</span> {typeString(f.returnType)}</p>
+                                                    <p className="returns-text"><span style={{ color: props.colors.textLight }}>Returns</span> {typeString(f.returnType)}</p>
                                                     <ReactMarkdown source={f.returnComment} className="comment small" />
                                                 </div>
                                             )}
@@ -309,13 +309,13 @@ const Docs = props => {
 
                             <div className="section">
 
-                                <p className="name">Properties</p>
+                                <p className="name" style={{ color: props.colors.accent }}>Properties</p>
 
                                 {docsData.properties.filter(p => !p.private).map(p => (
                                     <div className="property">
 
                                         <div className="property-name">
-                                            <p className="section-item-name" onClick={() => setJump(p.name)}><span>{docsData.name}</span>.{p.name}{p.optional ? "?" : ""}</p>
+                                            <p className="section-item-name" onClick={() => setJump(p.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{p.name}{p.optional ? "?" : ""}</p>
                                             <p className="type">{typeString(p.type)}</p>
                                         </div>
 
@@ -336,13 +336,13 @@ const Docs = props => {
 
                             <div className="section">
 
-                                <p className="name">Type Aliases</p>
+                                <p className="name" style={{ color: props.colors.accent }}>Type Aliases</p>
 
                                 {docsData.map(ta => (
                                     <div className="property">
 
                                         <div className="property-name">
-                                            <p className="section-item-name" onClick={() => setJump(ta.name)}><span>{ta.name}</span></p>
+                                            <p className="section-item-name" onClick={() => setJump(ta.name)}><span style={{ color: props.colors.textLight }}>{ta.name}</span></p>
                                             <p className="type">{typeString(ta.type)}</p>
                                         </div>
 

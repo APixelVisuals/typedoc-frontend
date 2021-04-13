@@ -2,7 +2,7 @@ import React from "react";
 import "./guide.scss";
 
 const Guide = props => (
-    <div id="guide-component" className={props.data.className} onClick={props.select}>
+    <div id="guide-component" className={props.data.className} style={{ backgroundColor: props.colors.backgroundDark }} onClick={props.select}>
 
         <div className="guide-title">
             <img className="guide-title-icon" src={props.data.icon} />

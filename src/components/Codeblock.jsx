@@ -8,7 +8,7 @@ highlightjs.registerLanguage("javascript", javascript);
 const Codeblock = props => (
     <div id="codeblock" style={{ width: props.width }}>
 
-        <div className="title-bar">
+        <div className="title-bar" style={{ backgroundColor: props.colors.background }}>
 
             <div className="title-bar-buttons">
                 <div className="title-bar-button red" />
@@ -20,7 +20,7 @@ const Codeblock = props => (
 
         </div>
 
-        <div className="codeblock-content" style={{ height: `calc(${props.height} - 45px)` }}>
+        <div className="codeblock-content" style={{ height: `calc(${props.height} - 45px)`, backgroundColor: props.colors.backgroundDark }}>
             <pre className="codeblock-text" dangerouslySetInnerHTML={{ __html: highlightjs.highlight("javascript", props.content).value }} />
         </div>
 

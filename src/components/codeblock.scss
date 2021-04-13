@@ -5,7 +5,6 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        background-color: var(--background-color);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         padding: 10px 25px;
@@ -45,7 +44,6 @@
     }
 
     .codeblock-content {
-        background-color: var(--background-color-dark);
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         overflow: auto;
@@ -56,7 +54,6 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
             border-radius: 100px;
         }
 

@@ -33,11 +33,11 @@ const DocsSidebar = props => {
                     {classes && classes.length && (
                         <>
 
-                            <p className="sidebar-section-title">Classes</p>
+                            <p className="sidebar-section-title" style={{ color: props.colors.text }}>Classes</p>
 
                             {classes.map(c => (
                                 <button onClick={() => props.setPath(`/classes/${c.name}`)}><div className="sidebar-item">
-                                    <TypeIcon letter="C" />
+                                    <TypeIcon letter="C" colors={props.colors} />
                                     <p className="name">{c.name}</p>
                                 </div></button>
                             ))}
@@ -48,10 +48,10 @@ const DocsSidebar = props => {
                     {functions && functions.length && (
                         <>
 
-                            <p className="sidebar-section-title">Functions</p>
+                            <p className="sidebar-section-title" style={{ color: props.colors.text }}>Functions</p>
 
                             <button onClick={() => props.setPath("/functions")}><div className="sidebar-item">
-                                <TypeIcon letter="F" />
+                                <TypeIcon letter="F" colors={props.colors} />
                                 <p className="name">Functions</p>
                             </div></button>
 
@@ -61,11 +61,11 @@ const DocsSidebar = props => {
                     {interfaces && interfaces.length && (
                         <>
 
-                            <p className="sidebar-section-title">Interfaces</p>
+                            <p className="sidebar-section-title" style={{ color: props.colors.text }}>Interfaces</p>
 
                             {interfaces.map(i => (
                                 <button onClick={() => props.setPath(`/interfaces/${i.name}`)}><div className="sidebar-item">
-                                    <TypeIcon letter="I" />
+                                    <TypeIcon letter="I" colors={props.colors} />
                                     <p className="name">{i.name}</p>
                                 </div></button>
                             ))}
@@ -76,10 +76,10 @@ const DocsSidebar = props => {
                     {typeAliases && typeAliases.length && (
                         <>
 
-                            <p className="sidebar-section-title">Type Aliases</p>
+                            <p className="sidebar-section-title" style={{ color: props.colors.text }}>Type Aliases</p>
 
                             <button onClick={() => props.setPath("/typeAliases")}><div className="sidebar-item">
-                                <TypeIcon letter="T" />
+                                <TypeIcon letter="T" colors={props.colors} />
                                 <p className="name">Type Aliases</p>
                             </div></button>
 
@@ -89,6 +89,7 @@ const DocsSidebar = props => {
                 </>
             )}
             search={setSearchQuery}
+            colors={props.colors}
         />
     );
 };

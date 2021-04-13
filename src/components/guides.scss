@@ -24,7 +24,6 @@
             }
 
             .text {
-                color: var(--accent-color);
                 font-family: "Apercu Pro Bold";
                 font-size: 28px;
                 margin: 0px;
@@ -36,7 +35,6 @@
         .divider {
             width: calc(100% - 130px);
             height: 2px;
-            background-color: var(--background-color);
             margin: 0px 65px;
             margin-top: 35px;
         }
@@ -48,7 +46,6 @@
             margin: 0px 65px;
 
             h1 {
-                color: var(--accent-color);
                 font-size: 28px;
                 font-weight: normal;
                 margin-top: 65px;
@@ -66,14 +63,9 @@
                 }
             }
 
-            a {
-                color: var(--text-color);
-            }
-
             hr {
                 width: 100%;
                 height: 2px;
-                background-color: var(--background-color);
                 border: none;
                 margin-top: 35px;
             }
@@ -88,7 +80,6 @@
         }
 
         .guide-section-title {
-            color: var(--accent-color);
             font-family: "Apercu Pro";
             font-size: 24px;
             margin: 0px 125px;

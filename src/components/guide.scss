@@ -3,7 +3,6 @@
 #guide-component {
     display: inline-block;
     text-decoration: none;
-    background-color: var(--background-color-dark);
     border-radius: 5px;
     padding: 25px 35px;
     margin: 25px;
@@ -11,7 +10,6 @@
     transition: 0.15s;
 
     &:hover {
-        box-shadow: 0px 0px 35px 15px var(--background-color-dark);
         transform: translateY(-3px);
     }
 
