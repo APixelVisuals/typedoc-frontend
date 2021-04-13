@@ -21,7 +21,18 @@ import React from "react";
 import { Docs } from "@apixelvisuals/typedoc-frontend";
 
 const App = () => (
-    <Docs url="https://example.com/docs.json" />
+    <Docs
+        url="https://example.com/docs.json"
+        colors={{
+            background: "#252550",
+            backgroundDark: "#171731",
+            primary: "#574ae2",
+            accent: "#f63e70",
+            text: "#7c72eb",
+            textLight: "#978fee",
+            textLighter: "#ada9e4"
+        }}
+    />
 );
 
 export default App;
@@ -52,6 +63,15 @@ const App = () => (
                 ]
             }
         ]}
+        colors={{
+            background: "#252550",
+            backgroundDark: "#171731",
+            primary: "#574ae2",
+            accent: "#f63e70",
+            text: "#7c72eb",
+            textLight: "#978fee",
+            textLighter: "#ada9e4"
+        }}
     />
 );
 

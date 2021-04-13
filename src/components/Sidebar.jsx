@@ -15,15 +15,15 @@ const Sidebar = props => {
                 <div className="line" />
             </div>
 
-            <div className={`sidebar-content ${sidebarOpen && "open"}`}>
+            <div className={`sidebar-content ${sidebarOpen && "open"}`} style={{ backgroundColor: props.colors.backgroundDark }}>
 
-                <p className={`sidebar-title ${props.onTitleClick && "clickable"}`} onClick={props.onTitleClick}>{props.title}</p>
+                <p className={`sidebar-title ${props.onTitleClick && "clickable"}`} style={{ color: props.colors.accent }} onClick={props.onTitleClick}>{props.title}</p>
 
-                <div className="divider" />
+                <div className="divider" style={{ backgroundColor: props.colors.background }} />
 
                 <div className="search">
-                    <p className="search-title">Search</p>
-                    <input type="text" className="search-bar" onInput={e => props.search(e.target.value)} />
+                    <p className="search-title" style={{ color: props.colors.text }}>Search</p>
+                    <input type="text" className="search-bar" style={{ backgroundColor: props.colors.background }} onInput={e => props.search(e.target.value)} />
                 </div>
 
                 <div className="pages">

@@ -3,12 +3,10 @@
 #type-icon {
     width: 25px;
     height: 25px;
-    background-color: #303070;
     border-radius: 5px;
     transform: rotate(15deg);
 
     .letter {
-        color: var(--accent-color);
         font-family: "Apercu Pro Bold";
         font-size: 18px;
         text-align: center;

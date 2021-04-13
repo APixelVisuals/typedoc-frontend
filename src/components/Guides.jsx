@@ -62,7 +62,7 @@ const Guides = props => {
     return (
         <div id="guides">
 
-            <GuidesSidebar sections={props.sections} select={selectGuide} onTitleClick={resetGuide} />
+            <GuidesSidebar sections={props.sections} select={selectGuide} onTitleClick={resetGuide} colors={props.colors} />
 
             <div className="content">
 
@@ -72,23 +72,37 @@ const Guides = props => {
 
                             <div className="title">
                                 <img className="icon" src={guide.icon} />
-                                <p className="text">{guide.name}</p>
+                                <p className="text" style={{ color: props.colors.accent }}>{guide.name}</p>
                             </div>
 
-                            <div className="divider" />
+                            <div className="divider" style={{ backgroundColor: props.colors.background }} />
 
                             <ReactMarkdown
                                 source={guideContent}
                                 className="guide-content"
                                 linkTarget="_blank"
                                 renderers={{
-                                    code: props => (
+                                    heading: elementProps => {
+                                        if (elementProps.level === 1) return <h1 style={{ color: props.colors.accent }}>{elementProps.children}</h1>;
+                                        else if (elementProps.level === 2) return <h2 style={{ color: props.colors.accent }}>{elementProps.children}</h2>;
+                                        else if (elementProps.level === 3) return <h3 style={{ color: props.colors.accent }}>{elementProps.children}</h3>;
+                                        else if (elementProps.level === 4) return <h4 style={{ color: props.colors.accent }}>{elementProps.children}</h4>;
+                                        else if (elementProps.level === 5) return <h5 style={{ color: props.colors.accent }}>{elementProps.children}</h5>;
+                                        else if (elementProps.level === 6) return <h6 style={{ color: props.colors.accent }}>{elementProps.children}</h6>;
+                                    },
+                                    link: elementProps => (
+                                        <a style={{ color: props.colors.text }} href={elementProps.href} target="_blank">{elementProps.children}</a>
+                                    ),
+                                    code: elementProps => (
                                         <div className="guide-codeblock">
                                             <Codeblock
                                                 path="Sample Code"
-                                                content={props.value}
+                                                content={elementProps.value}
                                             />
                                         </div>
+                                    ),
+                                    thematicBreak: () => (
+                                        <hr style={{ backgroundColor: props.colors.background }} />
                                     )
                                 }}
                             />
@@ -100,20 +114,20 @@ const Guides = props => {
 
                             <div className="title">
                                 <img className="icon" src={props.icon} />
-                                <p className="text">Guides</p>
+                                <p className="text" style={{ color: props.colors.accent }}>Guides</p>
                             </div>
 
-                            <div className="divider" />
+                            <div className="divider" style={{ backgroundColor: props.colors.background }} />
 
                             {props.sections.map(s => (
                                 <div>
 
-                                    <p className="guide-section-title">{s.name}</p>
+                                    <p className="guide-section-title" style={{ color: props.colors.accent }}>{s.name}</p>
 
                                     <div className={`guide-section ${s.className}`}>
 
                                         {s.guides.map(g => (
-                                            <Guide data={g} select={() => selectGuide(g)} />
+                                            <Guide data={g} select={() => selectGuide(g)} colors={props.colors} />
                                         ))}
 
                                     </div>
