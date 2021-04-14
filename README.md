@@ -58,7 +58,7 @@ const App = () => (
                         icon: "/assets/guides/icon.svg",
                         slug: String,
                         url: String,
-                        className: "main" || "main-small" || "thin" || "other" || "other last" || String
+                        className: String
                     }
                 ]
             }
