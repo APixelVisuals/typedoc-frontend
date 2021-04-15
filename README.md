@@ -23,6 +23,7 @@ import { Docs } from "@apixelvisuals/typedoc-frontend";
 const App = () => (
     <Docs
         url="https://example.com/docs.json"
+        defaultPath="/classes/Document"
         colors={{
             background: "#252550",
             backgroundDark: "#171731",
@@ -30,7 +31,8 @@ const App = () => (
             accent: "#f63e70",
             text: "#7c72eb",
             textLight: "#978fee",
-            textLighter: "#ada9e4"
+            textLighter: "#ada9e4",
+            codeblockBackground: "#7c72eb45"
         }}
     />
 );
