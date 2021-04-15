@@ -16,7 +16,7 @@ const Docs = props => {
     const setPath = (path, parsedDocs = docs) => {
 
         // Default path
-        if (path === "/") path = "/classes/Document";
+        if (path === "/") path = props.defaultPath;
 
         // Set url
         window.history.pushState(null, null, `/docs${path}`);
