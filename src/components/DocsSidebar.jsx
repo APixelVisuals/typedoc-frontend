@@ -20,9 +20,9 @@ const DocsSidebar = props => {
 
     // Get items
     const classes = props.docs && props.docs.classes.filter(searchFilter);
-    const functions = props.docs && [{ name: "Functions" }].filter(searchFilter);
+    const functions = props.docs && props.docs.functions.length && [{ name: "Functions" }].filter(searchFilter);
     const interfaces = props.docs && props.docs.interfaces.filter(searchFilter);
-    const typeAliases = props.docs && [{ name: "Type Aliases" }].filter(searchFilter);
+    const typeAliases = props.docs && props.docs.typeAliases.length && [{ name: "Type Aliases" }].filter(searchFilter);
 
     return (
         <Sidebar
@@ -30,7 +30,7 @@ const DocsSidebar = props => {
             content={props.docs && (
                 <>
 
-                    {classes && classes.length && (
+                    {(classes && classes.length) ? (
                         <>
 
                             <p className="sidebar-section-title" style={{ color: props.colors.text }}>Classes</p>
@@ -43,9 +43,9 @@ const DocsSidebar = props => {
                             ))}
 
                         </>
-                    )}
+                    ) : null}
 
-                    {functions && functions.length && (
+                    {(functions && functions.length) ? (
                         <>
 
                             <p className="sidebar-section-title" style={{ color: props.colors.text }}>Functions</p>
@@ -56,9 +56,9 @@ const DocsSidebar = props => {
                             </div></button>
 
                         </>
-                    )}
+                    ) : null}
 
-                    {interfaces && interfaces.length && (
+                    {(interfaces && interfaces.length) ? (
                         <>
 
                             <p className="sidebar-section-title" style={{ color: props.colors.text }}>Interfaces</p>
@@ -71,9 +71,9 @@ const DocsSidebar = props => {
                             ))}
 
                         </>
-                    )}
+                    ) : null}
 
-                    {typeAliases && typeAliases.length && (
+                    {(typeAliases && typeAliases.length) ? (
                         <>
 
                             <p className="sidebar-section-title" style={{ color: props.colors.text }}>Type Aliases</p>
@@ -84,7 +84,7 @@ const DocsSidebar = props => {
                             </div></button>
 
                         </>
-                    )}
+                    ) : null}
 
                 </>
             )}

@@ -38,6 +38,9 @@ const Docs = props => {
         else if (thisDocsType === "interface") thisDocsData = parsedDocs.interfaces.find(i => i.name === parsedPath);
         else if (thisDocsType === "typeAliases") thisDocsData = parsedDocs.typeAliases;
 
+        // No data
+        if ((!thisDocsData) || (thisDocsData.length === 0)) return setPath("/", parsedDocs);
+
         // Set docs data
         setDocsData(thisDocsData);
         setDocsType(thisDocsType);
@@ -89,8 +92,6 @@ const Docs = props => {
     // Type string
     const typeString = type => {
 
-        console.log(type);
-
         // Type sorting order
         const typeOrder = ["string", "number", "boolean", "null", "undefined"];
 
@@ -119,8 +120,6 @@ const Docs = props => {
 
             // Fetch docs
             const fetchedDocs = await fetchDocs(props.url);
-
-            console.log(fetchedDocs);
 
             // Set docs
             setDocs(fetchedDocs);
@@ -230,7 +229,7 @@ const Docs = props => {
 
                                 <p className="name" style={{ color: props.colors.accent }}>Methods</p>
 
-                                {docsData.methods.filter(m => !m.private).map(m => console.log(m) || (
+                                {docsData.methods.filter(m => !m.private).map(m => (
                                     <div className="method" data-name={m.name}>
 
                                         <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
