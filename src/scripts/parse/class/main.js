@@ -1,6 +1,7 @@
 import parseConstructor from "./constructor";
 import parseProperty from "./property";
 import parseMethod from "./method";
+import parseEvent from "./event";
 import parseType from "../type";
 
 const main = targetModule => {
@@ -12,6 +13,7 @@ const main = targetModule => {
         properties: [],
         methods: []
     };
+    if ((data.extends) && (data.extends.data === "EventEmitter")) data.events = [];
 
     // Loop through children
     targetModule.children.forEach(m => {
@@ -23,8 +25,15 @@ const main = targetModule => {
             if (property) data.properties.push(property);
         }
         else if (m.kindString === "Method") {
-            const method = parseMethod(m);
-            if (method) data.methods.push(method);
+
+            // Inherited
+            if (m.inheritedFrom) return;
+
+            // Event
+            if ((data.events) && (m.signatures[0].name === "on")) data.events.push(...m.signatures.map(s => parseEvent(s)));
+
+            // Method
+            else data.methods.push(parseMethod(m.signatures[0]));
         }
     });
 

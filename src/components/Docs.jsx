@@ -198,6 +198,26 @@ const Docs = props => {
 
                                 </div>
 
+                                {docsData.events && (
+                                    <div className="table-of-contents-section">
+
+                                        <div className="name" style={{ backgroundColor: props.colors.background }} onClick={() => setJump("events")}><p className="text" style={{ color: props.colors.accent }}>Events</p></div>
+
+                                        <div className="section-content" style={{ backgroundColor: props.colors.backgroundDark }}>
+
+                                            {docsData.events.map(e => (
+                                                <p className="section-item" onClick={() => setJump(e.name)}>{e.name}</p>
+                                            ))}
+
+                                            {!docsData.events.length && (
+                                                <p className="section-no-items" style={{ color: props.colors.textLight }}>No Events</p>
+                                            )}
+
+                                        </div>
+
+                                    </div>
+                                )}
+
                             </div>
 
                             <div className="section" data-name="properties">
@@ -267,6 +287,44 @@ const Docs = props => {
                                 )}
 
                             </div>
+
+                            {docsData.events && (
+                                <div className="section" data-name="events">
+
+                                    <p className="name" style={{ color: props.colors.accent }}>Events</p>
+
+                                    {docsData.events.map(e => (
+                                        <div className="method" data-name={e.name}>
+
+                                            <p className="section-item-name" onClick={() => setJump(e.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.on(<span style={{ color: props.colors.textLighter }}>"{e.name}"</span>, <span style={{ color: props.colors.textLighter }}>listener</span>)</p>
+
+                                            <div className="section-content">
+
+                                                <ReactMarkdown source={e.comment} className="comment" renderers={renderers} />
+
+                                                <div className="parameters">
+                                                    {e.parameters.map(p => (
+                                                        <div className="parameter">
+                                                            <div className="parameter-title">
+                                                                <p className="parameter-name" style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</p>
+                                                                <p className="type">{typeString(p.type)}</p>
+                                                            </div>
+                                                            <ReactMarkdown source={p.comment} className="comment small" renderers={renderers} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    ))}
+
+                                    {!docsData.events.length && (
+                                        <p className="section-no-items" style={{ color: props.colors.textLight }}>No Events</p>
+                                    )}
+
+                                </div>
+                            )}
 
                         </div>
                     )}
