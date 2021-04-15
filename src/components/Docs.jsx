@@ -89,17 +89,28 @@ const Docs = props => {
     // Type string
     const typeString = type => {
 
+        console.log(type);
+
         // Type sorting order
         const typeOrder = ["string", "number", "boolean", "null", "undefined"];
 
         // Parse
         if (!type.type) return typeLink(type.data);
-        else if (type.type === "union") return <p className="type-group">{type.data.sort((a, b) => typeOrder.indexOf(a.data) < typeOrder.indexOf(b.data) ? -1 : 1).map(t => typeString(t)).reduce((e, acc) => [e, " | ", acc])}</p>;
         else if (type.type === "array") return <p className="type-group">{typeString(type.data)}[]</p>;
+        else if (type.type === "union") return <p className="type-group">{type.data.sort((a, b) => typeOrder.indexOf(a.data) < typeOrder.indexOf(b.data) ? -1 : 1).map(t => typeString(t)).reduce((e, acc) => [e, " | ", acc])}</p>;
+        else if (type.type === "function") return <p className="type-group">({type.parameters.map(p => <p>{p.name}{p.optional ? "?" : ""}: {typeString(p.type)}</p>).reduce((e, acc) => [e, ", ", acc])}) =&gt; {typeString(type.returnType)}</p>;
         else if (type.type === "reference") return <p className="type-group">{type.arguments ? <span>{typeLink(type.data)}&lt;{type.arguments.map(t => typeString(t)).reduce((e, acc) => [e, ", ", acc])}&gt;</span> : typeLink(type.data)}</p>;
-        else if (type.type === "typeParameter") return <p className="type-group">{typeLink(type.extends.data)}</p>;
+        else if (type.type === "typeParameter") return <p className="type-group">{type.extends ? typeLink(type.extends.data) : type.data}</p>;
+        else if (type.type === "void") return "void";
         else if (type.type === "stringLiteral") return type.data;
         else if (type.type === "booleanLiteral") return type.data;
+    };
+
+    // Markdown renderers
+    const renderers = {
+        inlineCode: elementProps => (
+            <code style={{ backgroundColor: props.colors.codeblockBackground }}>{elementProps.children}</code>
+        )
     };
 
     // On load
@@ -108,6 +119,8 @@ const Docs = props => {
 
             // Fetch docs
             const fetchedDocs = await fetchDocs(props.url);
+
+            console.log(fetchedDocs);
 
             // Set docs
             setDocs(fetchedDocs);
@@ -201,7 +214,7 @@ const Docs = props => {
                                         </div>
 
                                         <div className="section-content">
-                                            <ReactMarkdown source={p.comment} className="comment" />
+                                            <ReactMarkdown source={p.comment} className="comment" renderers={renderers} />
                                         </div>
 
                                     </div>
@@ -217,14 +230,14 @@ const Docs = props => {
 
                                 <p className="name" style={{ color: props.colors.accent }}>Methods</p>
 
-                                {docsData.methods.filter(m => !m.private).map(m => (
+                                {docsData.methods.filter(m => !m.private).map(m => console.log(m) || (
                                     <div className="method" data-name={m.name}>
 
                                         <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
 
                                         <div className="section-content">
 
-                                            <ReactMarkdown source={m.comment} className="comment" />
+                                            <ReactMarkdown source={m.comment} className="comment" renderers={renderers} />
 
                                             <div className="parameters">
                                                 {m.parameters.map(p => (
@@ -233,15 +246,15 @@ const Docs = props => {
                                                             <p className="parameter-name" style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</p>
                                                             <p className="type">{typeString(p.type)}</p>
                                                         </div>
-                                                        <ReactMarkdown source={p.comment} className="comment small" />
+                                                        <ReactMarkdown source={p.comment} className="comment small" renderers={renderers} />
                                                     </div>
                                                 ))}
                                             </div>
 
-                                            {m.returnType && (
+                                            {typeString(m.returnType) !== "void" && (
                                                 <div className="returns">
                                                     <p className="returns-text"><span style={{ color: props.colors.textLight }}>Returns</span> {typeString(m.returnType)}</p>
-                                                    <ReactMarkdown source={m.returnComment} className="comment small" />
+                                                    <ReactMarkdown source={m.returnComment} className="comment small" renderers={renderers} />
                                                 </div>
                                             )}
 
@@ -273,7 +286,7 @@ const Docs = props => {
 
                                         <div className="section-content">
 
-                                            <ReactMarkdown source={f.comment} className="comment" />
+                                            <ReactMarkdown source={f.comment} className="comment" renderers={renderers} />
 
                                             <div className="parameters">
                                                 {f.parameters.map(p => (
@@ -282,15 +295,15 @@ const Docs = props => {
                                                             <p className="parameter-name" style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</p>
                                                             <p className="type">{typeString(p.type)}</p>
                                                         </div>
-                                                        <ReactMarkdown source={p.comment} className="comment small" />
+                                                        <ReactMarkdown source={p.comment} className="comment small" renderers={renderers} />
                                                     </div>
                                                 ))}
                                             </div>
 
-                                            {f.returnType && (
+                                            {typeString(f.returnType) !== "void" && (
                                                 <div className="returns">
                                                     <p className="returns-text"><span style={{ color: props.colors.textLight }}>Returns</span> {typeString(f.returnType)}</p>
-                                                    <ReactMarkdown source={f.returnComment} className="comment small" />
+                                                    <ReactMarkdown source={f.returnComment} className="comment small" renderers={renderers} />
                                                 </div>
                                             )}
 
@@ -320,7 +333,7 @@ const Docs = props => {
                                         </div>
 
                                         <div className="section-content">
-                                            <ReactMarkdown source={p.comment} className="comment" />
+                                            <ReactMarkdown source={p.comment} className="comment" renderers={renderers} />
                                         </div>
 
                                     </div>

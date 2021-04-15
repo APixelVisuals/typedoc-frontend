@@ -101,6 +101,9 @@ const Guides = props => {
                                             />
                                         </div>
                                     ),
+                                    inlineCode: elementProps => (
+                                        <code style={{ backgroundColor: props.colors.codeblockBackground }}>{elementProps.children}</code>
+                                    ),
                                     thematicBreak: () => (
                                         <hr style={{ backgroundColor: props.colors.background }} />
                                     )
