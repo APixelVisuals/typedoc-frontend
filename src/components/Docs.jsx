@@ -101,7 +101,8 @@ const Docs = props => {
         else if (type.type === "union") return <p className="type-group">{type.data.sort((a, b) => typeOrder.indexOf(a.data) < typeOrder.indexOf(b.data) ? -1 : 1).map(t => typeString(t)).reduce((e, acc) => [e, " | ", acc])}</p>;
         else if (type.type === "function") return <p className="type-group">({type.parameters.map(p => <p>{p.name}{p.optional ? "?" : ""}: {typeString(p.type)}</p>).reduce((e, acc) => [e, ", ", acc])}) =&gt; {typeString(type.returnType)}</p>;
         else if (type.type === "reference") return <p className="type-group">{type.arguments ? <span>{typeLink(type.data)}&lt;{type.arguments.map(t => typeString(t)).reduce((e, acc) => [e, ", ", acc])}&gt;</span> : typeLink(type.data)}</p>;
-        else if (type.type === "typeParameter") return <p className="type-group">{type.extends ? typeLink(type.extends.data) : type.data}</p>;
+        else if (type.type === "conditional") return console.log(type.trueType, type.falseType) || <p className="type-group">{typeString(type.trueType)} | {typeString(type.falseType)}</p>;
+        else if (type.type === "typeParameter") return <p className="type-group">{type.extends ? typeString(type.extends) : type.data}</p>;
         else if (type.type === "void") return "void";
         else if (type.type === "stringLiteral") return type.data;
         else if (type.type === "booleanLiteral") return type.data;
