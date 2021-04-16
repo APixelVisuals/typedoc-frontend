@@ -338,7 +338,7 @@ const Docs = props => {
                                 <p className="name" style={{ color: props.colors.accent }}>Functions</p>
 
                                 {docsData.map(f => (
-                                    <div className="method">
+                                    <div className="method" data-name={f.name}>
 
                                         <p className="section-item-name" onClick={() => setJump(f.name)}>{f.name}({f.parameters.length ? f.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
 
@@ -383,7 +383,7 @@ const Docs = props => {
                                 <p className="name" style={{ color: props.colors.accent }}>Properties</p>
 
                                 {docsData.properties.filter(p => !p.private).map(p => (
-                                    <div className="property">
+                                    <div className="property" data-name={p.name}>
 
                                         <div className="property-name">
                                             <p className="section-item-name" onClick={() => setJump(p.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{p.name}{p.optional ? "?" : ""}</p>
@@ -410,7 +410,7 @@ const Docs = props => {
                                 <p className="name" style={{ color: props.colors.accent }}>Type Aliases</p>
 
                                 {docsData.map(ta => (
-                                    <div className="property">
+                                    <div className="property" data-name={ta.name}>
 
                                         <div className="property-name">
                                             <p className="section-item-name" onClick={() => setJump(ta.name)}><span style={{ color: props.colors.textLight }}>{ta.name}</span></p>
