@@ -64,6 +64,27 @@
             }
         }
 
+        .title-comment {
+            padding: 0px 100px;
+            margin-top: 25px;
+
+            p {
+                color: white;
+                font-family: "Apercu Pro";
+                font-size: 18px;
+                white-space: pre-wrap;
+                margin: 0px;
+                margin-top: 10px;
+            }
+
+            code {
+                font-family: "Apercu Pro Mono";
+                font-size: 15px;
+                border-radius: 5px;
+                padding: 2px 7px;
+            }
+        }
+
         .divider {
             width: calc(100% - 130px);
             height: 2px;

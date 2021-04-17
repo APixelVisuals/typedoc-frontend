@@ -4,14 +4,16 @@ const parseInterface = targetModule => {
 
     // Define data
     const data = {
-        name: targetModule.name
+        name: targetModule.name,
+        comment: targetModule.comment && targetModule.comment.text && targetModule.comment.text.trim()
     };
 
     // Parse properties
     data.properties = targetModule.children.map(d => ({
         name: d.name,
-        optional: d.flags.isOptional,
-        type: parseType(d.type)
+        type: parseType(d.type),
+        comment: d.comment && d.comment.text && d.comment.text.trim(),
+        optional: d.flags.isOptional
     }));
 
     // Return

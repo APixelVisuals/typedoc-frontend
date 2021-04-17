@@ -156,6 +156,10 @@ const Docs = props => {
 
                     </div>
 
+                    {docsData.comment && (
+                        <ReactMarkdown source={docsData.comment} className="title-comment" renderers={renderers} />
+                    )}
+
                     <div className="divider" style={{ backgroundColor: props.colors.background }} />
 
                     {docsType === "class" && (
@@ -415,6 +419,12 @@ const Docs = props => {
                                         <div className="property-name">
                                             <p className="section-item-name" onClick={() => setJump(ta.name)}><span style={{ color: props.colors.textLight }}>{ta.name}</span></p>
                                             <p className="type">{typeString(ta.type)}</p>
+                                        </div>
+
+                                        <div className="section-content">
+                                            {ta.comment && (
+                                                <ReactMarkdown source={ta.comment} className="comment" renderers={renderers} />
+                                            )}
                                         </div>
 
                                     </div>
