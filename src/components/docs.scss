@@ -31,35 +31,72 @@
             cursor: pointer;
         }
 
-        .title {
+        .title-wrapper {
             display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
+            flex-wrap: wrap;
             padding: 0px 100px;
             margin-top: 65px;
 
-            .title-text {
-                margin-left: 25px;
+            .title {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                margin-bottom: 35px;
+                margin-right: auto;
+
+                @media screen and (max-width: 700px) {
+                    margin: 0px auto;
+                    margin-bottom: 35px;
+                }
+
+                .title-text {
+                    margin-left: 25px;
+
+                    .text {
+                        font-family: "Apercu Pro Bold";
+                        font-size: 28px;
+                        margin: 0px;
+                        margin-top: 10px;
+                    }
+
+                    .extends {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        color: white;
+                        font-family: "Apercu Pro";
+                        font-size: 18px;
+                        margin: 0px;
+
+                        span {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            .private-properties {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                margin-bottom: 35px;
+
+                flex-direction: column;
+
+                @media screen and (max-width: 700px) {
+                    margin: 0px auto;
+                    margin-bottom: 35px;
+                }
 
                 .text {
-                    font-family: "Apercu Pro Bold";
-                    font-size: 28px;
+                    font-family: "Apercu Pro";
+                    font-size: 22px;
                     margin: 0px;
                     margin-top: 10px;
                 }
 
-                .extends {
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    color: white;
-                    font-family: "Apercu Pro";
-                    font-size: 18px;
-                    margin: 0px;
-
-                    span {
-                        margin-right: 5px;
-                    }
+                .toggle-switch {
+                    margin-top: 10px;
                 }
             }
         }
@@ -89,7 +126,6 @@
             width: calc(100% - 130px);
             height: 2px;
             margin: 0px 65px;
-            margin-top: 35px;
         }
 
         .table-of-contents {

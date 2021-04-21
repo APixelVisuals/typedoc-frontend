@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import ToggleSwitch from "react-switch";
 import DocsSidebar from "./DocsSidebar.jsx";
 import TypeIcon from "./TypeIcon.jsx";
 import fetchDocs from "../scripts/fetchDocs";
@@ -11,6 +12,7 @@ const Docs = props => {
     const [docs, setDocs] = useState();
     const [docsData, setDocsData] = useState();
     const [docsType, setDocsType] = useState();
+    const [displayPrivateProperties, setDisplayPrivateProperties] = useState(false);
 
     // Set path
     const setPath = (path, parsedDocs = docs) => {
@@ -138,21 +140,44 @@ const Docs = props => {
             {(docsData && docsType) && (
                 <div className="content">
 
-                    <div className="title">
+                    <div className="title-wrapper">
 
-                        <TypeIcon letter={docsType.charAt(0).toUpperCase()} large={true} colors={props.colors} />
+                        <div className="title">
 
-                        <div className="title-text">
+                            <TypeIcon letter={docsType.charAt(0).toUpperCase()} large={true} colors={props.colors} />
 
-                            {docsData.name && <h2 className="text" style={{ color: props.colors.accent }}>{docsData.name}</h2>}
-                            {docsType === "functions" && <h2 className="text" style={{ color: props.colors.accent }}>Functions</h2>}
-                            {docsType === "typeAliases" && <h2 className="text" style={{ color: props.colors.accent }}>Type Aliases</h2>}
+                            <div className="title-text">
 
-                            {docsData.extends && (
-                                <p className="extends"><span>Extends</span> {typeString(docsData.extends)}</p>
-                            )}
+                                {docsData.name && <h2 className="text" style={{ color: props.colors.accent }}>{docsData.name}</h2>}
+                                {docsType === "functions" && <h2 className="text" style={{ color: props.colors.accent }}>Functions</h2>}
+                                {docsType === "typeAliases" && <h2 className="text" style={{ color: props.colors.accent }}>Type Aliases</h2>}
+
+                                {docsData.extends && (
+                                    <p className="extends"><span>Extends</span> {typeString(docsData.extends)}</p>
+                                )}
+
+                            </div>
 
                         </div>
+
+                        {["class", "interface"].includes(docsType) && (
+                            <div className="private-properties">
+
+                                <p className="text" style={{ color: props.colors.accent }}>Private Properties</p>
+                                <ToggleSwitch
+                                    checked={displayPrivateProperties}
+                                    onChange={() => setDisplayPrivateProperties(!displayPrivateProperties)}
+                                    onColor={props.colors.accent}
+                                    offColor={props.colors.backgroundDark}
+                                    onHandleColor="#000000"
+                                    checkedIcon={false}
+                                    uncheckedIcon={false}
+                                    activeBoxShadow={null}
+                                    className="toggle-switch"
+                                />
+
+                            </div>
+                        )}
 
                     </div>
 
@@ -173,11 +198,11 @@ const Docs = props => {
 
                                     <div className="section-content" style={{ backgroundColor: props.colors.backgroundDark }}>
 
-                                        {docsData.properties.filter(p => !p.private).map(p => (
+                                        {docsData.properties.filter(p => displayPrivateProperties || !p.private).map(p => (
                                             <p className="section-item" onClick={() => setJump(p.name)}>{p.name}</p>
                                         ))}
 
-                                        {!docsData.properties.filter(p => !p.private).length && (
+                                        {!docsData.properties.filter(p => displayPrivateProperties || !p.private).length && (
                                             <p className="section-no-items" style={{ color: props.colors.textLight }}>No Properties</p>
                                         )}
 
@@ -191,11 +216,11 @@ const Docs = props => {
 
                                     <div className="section-content" style={{ backgroundColor: props.colors.backgroundDark }}>
 
-                                        {docsData.methods.filter(m => !m.private).map(m => (
+                                        {docsData.methods.filter(m => displayPrivateProperties || !m.private).map(m => (
                                             <p className="section-item" onClick={() => setJump(m.name)}>{m.name}</p>
                                         ))}
 
-                                        {!docsData.methods.filter(m => !m.private).length && (
+                                        {!docsData.methods.filter(m => displayPrivateProperties || !m.private).length && (
                                             <p className="section-no-items" style={{ color: props.colors.textLight }}>No Methods</p>
                                         )}
 
@@ -229,7 +254,7 @@ const Docs = props => {
 
                                 <p className="name" style={{ color: props.colors.accent }}>Properties</p>
 
-                                {docsData.properties.filter(p => !p.private).map(p => (
+                                {docsData.properties.filter(p => displayPrivateProperties || !p.private).map(p => (
                                     <div className="property" data-name={p.name}>
 
                                         <div className="property-name">
@@ -244,7 +269,7 @@ const Docs = props => {
                                     </div>
                                 ))}
 
-                                {!docsData.properties.filter(p => !p.private).length && (
+                                {!docsData.properties.filter(p => displayPrivateProperties || !p.private).length && (
                                     <p className="section-no-items" style={{ color: props.colors.textLight }}>No Properties</p>
                                 )}
 
@@ -254,10 +279,10 @@ const Docs = props => {
 
                                 <p className="name" style={{ color: props.colors.accent }}>Methods</p>
 
-                                {docsData.methods.filter(m => !m.private).map(m => (
+                                {docsData.methods.filter(m => displayPrivateProperties || !m.private).map(m => (
                                     <div className="method" data-name={m.name}>
 
-                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null}) {m.static && <span className="tag" style={{ backgroundColor: props.colors.background }}>Static</span>}</p>
+                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null}) {m.private && <span className="tag" style={{ backgroundColor: props.colors.background }}>Private</span>} {m.static && <span className="tag" style={{ backgroundColor: props.colors.background }}>Static</span>}</p>
 
                                         <div className="section-content">
 
@@ -287,7 +312,7 @@ const Docs = props => {
                                     </div>
                                 ))}
 
-                                {!docsData.methods.filter(m => !m.private).length && (
+                                {!docsData.methods.filter(m => displayPrivateProperties || !m.private).length && (
                                     <p className="section-no-items" style={{ color: props.colors.textLight }}>No Methods</p>
                                 )}
 
@@ -386,7 +411,7 @@ const Docs = props => {
 
                                 <p className="name" style={{ color: props.colors.accent }}>Properties</p>
 
-                                {docsData.properties.filter(p => !p.private).map(p => (
+                                {docsData.properties.filter(p => displayPrivateProperties || !p.private).map(p => (
                                     <div className="property" data-name={p.name}>
 
                                         <div className="property-name">
