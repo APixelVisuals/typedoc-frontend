@@ -8,10 +8,10 @@ const parseProperty = targetModule => {
     // Return
     return {
         name: targetModule.name,
-        comment: targetModule.comment.text.trim(),
+        comment: targetModule.comment && targetModule.comment.text && targetModule.comment.text.trim(),
         type: parseType(targetModule.type),
         optional: targetModule.flags.isOptional,
-        private: targetModule.name.startsWith("_")
+        private: targetModule.flags.isPrivate
     };
 };
 

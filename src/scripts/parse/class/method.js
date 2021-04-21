@@ -6,9 +6,9 @@ const parseMethod = targetModule => {
     // Define data
     const data = {
         name: targetModule.name,
-        comment: targetModule.comment.text && targetModule.comment.text.trim(),
+        comment: targetModule.comment && targetModule.comment.text && targetModule.comment.text.trim(),
         parameters: [],
-        private: targetModule.name.startsWith("_"),
+        private: targetModule.flags.isPrivate,
         returnType: parseType(targetModule.type),
         returnComment: targetModule.comment.returns && targetModule.comment.returns.trim()
     };
