@@ -161,6 +161,14 @@
                 margin: 0px;
                 margin-right: 15px;
                 cursor: pointer;
+
+                .tag {
+                    font-family: "Apercu Pro Mono";
+                    font-size: 18px;
+                    border-radius: 5px;
+                    padding: 2px 7px;
+                    margin-left: 5px;
+                }
             }
 
             .section-content {

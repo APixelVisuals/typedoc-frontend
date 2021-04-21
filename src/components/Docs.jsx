@@ -257,7 +257,7 @@ const Docs = props => {
                                 {docsData.methods.filter(m => !m.private).map(m => (
                                     <div className="method" data-name={m.name}>
 
-                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null})</p>
+                                        <p className="section-item-name" onClick={() => setJump(m.name)}><span style={{ color: props.colors.textLight }}>{docsData.name}</span>.{m.name}({m.parameters.length ? m.parameters.map(p => <span style={{ color: props.colors.textLighter }}>{p.name}{p.optional ? "?" : ""}</span>).reduce((e, acc) => [e, ", ", acc]) : null}) {m.static && <span className="tag" style={{ backgroundColor: props.colors.background }}>Static</span>}</p>
 
                                         <div className="section-content">
 

@@ -33,7 +33,7 @@ const main = targetModule => {
             if ((data.events) && (m.signatures[0].name === "on")) data.events.push(...m.signatures.map(s => parseEvent(s)));
 
             // Method
-            else data.methods.push(parseMethod(m.signatures[0]));
+            else data.methods.push(parseMethod(m.signatures[0], m));
         }
     });
 

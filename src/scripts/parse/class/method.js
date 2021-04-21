@@ -1,7 +1,7 @@
 import parseParameters from "../parameters";
 import parseType from "../type";
 
-const parseMethod = targetModule => {
+const parseMethod = (targetModule, method) => {
 
     // Define data
     const data = {
@@ -9,6 +9,7 @@ const parseMethod = targetModule => {
         comment: targetModule.comment && targetModule.comment.text && targetModule.comment.text.trim(),
         parameters: [],
         private: targetModule.flags.isPrivate,
+        static: method && method.flags.isStatic,
         returnType: parseType(targetModule.type),
         returnComment: targetModule.comment.returns && targetModule.comment.returns.trim()
     };
