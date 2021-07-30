@@ -98,6 +98,7 @@ const Guides = props => {
                                             <Codeblock
                                                 path="Sample Code"
                                                 content={elementProps.value}
+                                                colors={props.colors}
                                             />
                                         </div>
                                     ),
